@@ -1,0 +1,228 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Server\\StoreApp.Server.csproj": {}
+  },
+  "projects": {
+    "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Client\\StoreApp.Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Client\\StoreApp.Client.csproj",
+        "projectName": "StoreApp.Client",
+        "projectPath": "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Client\\StoreApp.Client.csproj",
+        "packagesPath": "C:\\Users\\snt-2\\.nuget\\packages\\",
+        "outputPath": "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Client\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\snt-2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Shared\\StoreApp.Shared.csproj": {
+                "projectPath": "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Shared\\StoreApp.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "System.Net.Http.Json": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.browser-wasm",
+              "version": "[5.0.8, 5.0.8]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "browser-wasm": {
+          "#import": []
+        }
+      }
+    },
+    "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Server\\StoreApp.Server.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Server\\StoreApp.Server.csproj",
+        "projectName": "StoreApp.Server",
+        "projectPath": "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Server\\StoreApp.Server.csproj",
+        "packagesPath": "C:\\Users\\snt-2\\.nuget\\packages\\",
+        "outputPath": "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Server\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\snt-2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Client\\StoreApp.Client.csproj": {
+                "projectPath": "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Client\\StoreApp.Client.csproj"
+              },
+              "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Shared\\StoreApp.Shared.csproj": {
+                "projectPath": "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Shared\\StoreApp.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.WebAssembly.Server": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Shared\\StoreApp.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Shared\\StoreApp.Shared.csproj",
+        "projectName": "StoreApp.Shared",
+        "projectPath": "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Shared\\StoreApp.Shared.csproj",
+        "packagesPath": "C:\\Users\\snt-2\\.nuget\\packages\\",
+        "outputPath": "D:\\Unicauca\\Programacion\\Udemy\\Blazor\\StoreApp\\StoreApp\\Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\snt-2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
