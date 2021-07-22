@@ -1,0 +1,2 @@
+# StoreApp
+Blazor WebAssembly StoreApp
