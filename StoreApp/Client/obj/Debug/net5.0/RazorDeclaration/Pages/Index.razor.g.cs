@@ -82,6 +82,13 @@ using StoreApp.Client.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\Pages\Index.razor"
+using StoreApp.Shared;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -90,6 +97,20 @@ using StoreApp.Client.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 16 "D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\Pages\Index.razor"
+ 
+    List<Product> Products = new List<Product>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/Store");
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient ClientHttp { get; set; }
     }
 }
 #pragma warning restore 1591

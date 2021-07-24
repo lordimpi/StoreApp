@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StoreApp.Server.Data;
+using StoreApp.Server.Repositories;
 using System.Linq;
 
 namespace StoreApp.Server
@@ -26,6 +27,8 @@ namespace StoreApp.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<IMassiveRepository, MassiveRepository>();
+
             var ConnectionStringSqlConfiguration = new DataAccess(Configuration.GetConnectionString("SQL"));
             services.AddSingleton(ConnectionStringSqlConfiguration);
         }
