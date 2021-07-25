@@ -5,12 +5,26 @@
 <div class="container-fluid">
     <hr />
     <h1>StoreApp!</h1>
-    @foreach (var item in Products)
-    {
-        <h3>@item.Nombre   "--- >"  @item.Precio.PrecioVenta</h3>
-        <h5><b>@item.Descripcion</b></h5>
-    }
+
     Welcome to my Store App
+    <hr />
+
+    <div class="card-columns">
+        @foreach (var item in Products)
+        {
+            <div class="col mb-4">
+                <div class="card" style="width:400px; cursor:pointer">
+                    <img class="card-img-top" src="/@item.RutaImagen" alt="@item.Nombre" style="width:90%">
+                    <div class="card-body">
+                        <h4 class="card-title">$ @item.Precio.PrecioVenta</h4>
+                        <p class="card-text">@item.Nombre</p>
+                        <a href="#" class="btn btn-success">Add to car</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
 </div>
 
 @code
