@@ -1,6 +1,5 @@
 ﻿@page "/"
 @inject HttpClient ClientHttp
-@using StoreApp.Shared
 
 <div class="container-fluid">
     <hr />
@@ -13,8 +12,10 @@
         @foreach (var item in Products)
         {
             <div class="col mb-4">
-                <div class="card" style="width:400px; cursor:pointer">
-                    <img class="card-img-top" src="/@item.RutaImagen" alt="@item.Nombre" style="width:90%">
+                <div class="card" style="width:400px">
+                    <img class="card-img-top"
+                         src="/@item.RutaImagen" alt="@item.Nombre"
+                         style="width: 90%; cursor: pointer " @onclick="@(()=> MostrarId(item))">
                     <div class="card-body">
                         <h4 class="card-title">$ @item.Precio.PrecioVenta</h4>
                         <p class="card-text">@item.Nombre</p>
@@ -26,13 +27,25 @@
     </div>
 
 </div>
+@if (LayerVisible)
+{
+    <ProductDetails Product="LayerProduct"></ProductDetails>
+}
+
 
 @code
 {
     List<Product> Products = new List<Product>();
-
+    bool LayerVisible;
+    Product LayerProduct;
     protected async override Task OnInitializedAsync()
     {
         Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/ListProducts");
+    }
+
+    private void MostrarId(Product product)
+    {
+        LayerProduct = product;
+        LayerVisible = true;
     }
 }

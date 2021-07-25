@@ -625,3 +625,5 @@ D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\StoreApp.Client.dll
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\ref\StoreApp.Client.dll
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\StoreApp.Client.pdb
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\RazorDeclaration\Shared\ProductDetails.razor.g.cs
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\Razor\Shared\ProductDetails.razor.g.cs
