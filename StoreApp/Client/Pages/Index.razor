@@ -1,8 +1,24 @@
 ﻿@page "/"
+@inject HttpClient ClientHttp
+@using StoreApp.Shared
 
 <div class="container-fluid">
     <hr />
     <h1>StoreApp!</h1>
-
+    @foreach (var item in Products)
+    {
+        <h3>@item.Nombre   "--- >"  @item.Precio.PrecioVenta</h3>
+        <h5><b>@item.Descripcion</b></h5>
+    }
     Welcome to my Store App
 </div>
+
+@code
+{
+    List<Product> Products = new List<Product>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/ListProducts");
+    }
+}
