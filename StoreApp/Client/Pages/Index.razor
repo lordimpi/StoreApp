@@ -7,7 +7,8 @@
     <h1>StoreApp!</h1>
     @foreach (var item in Products)
     {
-        <h3>@item.Nombre</h3>
+        <h3>@item.Nombre   "--- >"  @item.Precio.PrecioVenta</h3>
+        <h5><b>@item.Descripcion</b></h5>
     }
     Welcome to my Store App
 </div>
@@ -18,6 +19,6 @@
 
     protected async override Task OnInitializedAsync()
     {
-        Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/Store");
+        Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/ListProducts");
     }
 }

@@ -19,5 +19,6 @@ namespace StoreApp.Shared
         [Required(ErrorMessage = "* El campo fecha de baja es obligatorio")]
         public DateTime FechaBaja { get; set; }
         public Price Precio { get; set; }
+        public string Descripcion { get; set; }
     }
 }
