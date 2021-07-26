@@ -29,15 +29,15 @@
 </div>
 @if (LayerVisible)
 {
-    <ProductDetails Product="LayerProduct" OnCancel="CancelarDialogo"></ProductDetails>
+    <ProductDetails Product="LayerProduct" OnCancel="CancelarDialogo" OnAdding="AddProductToCar"></ProductDetails>
 }
-
 
 @code
 {
     List<Product> Products = new List<Product>();
     bool LayerVisible;
     Product LayerProduct;
+    List<Product> SelectedProducs = new List<Product>();
     protected async override Task OnInitializedAsync()
     {
         Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/ListProducts");
@@ -52,5 +52,14 @@
     private void CancelarDialogo()
     {
         LayerVisible = false;
+    }
+
+    private void AddProductToCar()
+    {
+        Product product = LayerProduct;
+        SelectedProducs.Add(product);
+        LayerVisible = false;
+        // When you need delet item before to add sale car, use this line
+        //Products.Remove(product);
     }
 }

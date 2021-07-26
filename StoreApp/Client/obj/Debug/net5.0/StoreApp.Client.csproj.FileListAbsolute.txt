@@ -28,7 +28,9 @@ D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.Extensions.Primitives.dll.gz
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.JSInterop.dll.gz
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.JSInterop.WebAssembly.dll.gz
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Radzen.Blazor.dll.gz
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\System.IO.Pipelines.dll.gz
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\System.Linq.Dynamic.Core.dll.gz
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.CSharp.dll.gz
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.VisualBasic.Core.dll.gz
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.VisualBasic.dll.gz
@@ -224,7 +226,9 @@ D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.Extensions.Primitives.dll
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.JSInterop.dll
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.JSInterop.WebAssembly.dll
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Radzen.Blazor.dll
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\System.IO.Pipelines.dll
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\System.Linq.Dynamic.Core.dll
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.CSharp.dll
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.VisualBasic.Core.dll
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.VisualBasic.dll
@@ -408,6 +412,8 @@ D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\StoreApp.Client.RazorComponent.input.cache
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\RazorDeclaration\Pages\ProducstIndex.razor.g.cs
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\RazorDeclaration\Shared\ProductDetails.razor.g.cs
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\StoreApp.Client.RazorComponent.output.cache
@@ -417,6 +423,8 @@ D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\StoreApp.Client.RazorCoreGenerate.cache
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\Razor\App.razor.g.cs
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\Razor\Pages\ProducstIndex.razor.g.cs
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\Razor\Shared\ProductDetails.razor.g.cs
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\build-gz\jE1VqsuW.gz
@@ -442,6 +450,7 @@ D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\build-gz\xU7GFlZ+.gz
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\build-gz\f+Vl6h7m.gz
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\build-gz\3lH+5lRq.gz
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\build-gz\GMQYKHdJ.gz
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\build-gz\Y5XfyXgr.gz
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\build-gz\8VP53mAr.gz
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\build-gz\fqiwTEp9.gz
@@ -625,5 +634,4 @@ D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\StoreApp.Client.dll
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\ref\StoreApp.Client.dll
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\StoreApp.Client.pdb
-D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\RazorDeclaration\Shared\ProductDetails.razor.g.cs
-D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\Razor\Shared\ProductDetails.razor.g.cs
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\build-gz\azkek8I0.gz
