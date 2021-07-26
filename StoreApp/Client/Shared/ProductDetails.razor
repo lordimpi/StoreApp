@@ -9,8 +9,9 @@
                 <p>@Product.Precio.PrecioVenta.ToString() $</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"
+                        @onclick="OnCancel">Cancel</button>
+                <button type="button" class="btn btn-primary" @onclick="OnAdding">Add</button>
             </div>
         </div>
     </div>
@@ -20,4 +21,10 @@
 {
     [Parameter]
     public Product Product { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+
+    [Parameter]
+    public EventCallback OnAdding { get; set; }
 }

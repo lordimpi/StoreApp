@@ -15,7 +15,7 @@
                 <div class="card" style="width:400px">
                     <img class="card-img-top"
                          src="/@item.RutaImagen" alt="@item.Nombre"
-                         style="width: 90%; cursor: pointer " @onclick="@(()=> MostrarId(item))">
+                         style="width: 100%; cursor: pointer " @onclick="@(()=> ShowModal(item))">
                     <div class="card-body">
                         <h4 class="card-title">$ @item.Precio.PrecioVenta</h4>
                         <p class="card-text">@item.Nombre</p>
@@ -29,7 +29,7 @@
 </div>
 @if (LayerVisible)
 {
-    <ProductDetails Product="LayerProduct"></ProductDetails>
+    <ProductDetails Product="LayerProduct" OnCancel="CancelarDialogo"></ProductDetails>
 }
 
 
@@ -43,9 +43,14 @@
         Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/ListProducts");
     }
 
-    private void MostrarId(Product product)
+    private void ShowModal(Product product)
     {
         LayerProduct = product;
         LayerVisible = true;
+    }
+
+    private void CancelarDialogo()
+    {
+        LayerVisible = false;
     }
 }
