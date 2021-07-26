@@ -2,6 +2,7 @@ D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Shared\bin\Debug\net5.0\
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Shared\bin\Debug\net5.0\StoreApp.Shared.dll
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Shared\bin\Debug\net5.0\ref\StoreApp.Shared.dll
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Shared\bin\Debug\net5.0\StoreApp.Shared.pdb
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Shared\obj\Debug\net5.0\StoreApp.Shared.csproj.AssemblyReference.cache
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Shared\obj\Debug\net5.0\StoreApp.Shared.GeneratedMSBuildEditorConfig.editorconfig
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Shared\obj\Debug\net5.0\StoreApp.Shared.AssemblyInfoInputs.cache
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Shared\obj\Debug\net5.0\StoreApp.Shared.AssemblyInfo.cs

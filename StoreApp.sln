@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.Server", "StoreApp\Server\StoreApp.Server.csproj", "{DA0F8007-BA6F-4128-8474-C8BCEE9F1EBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreApp.Server", "StoreApp\Server\StoreApp.Server.csproj", "{DA0F8007-BA6F-4128-8474-C8BCEE9F1EBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.Client", "StoreApp\Client\StoreApp.Client.csproj", "{8D3C3194-2472-4D51-9FB8-12444A179F27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreApp.Client", "StoreApp\Client\StoreApp.Client.csproj", "{8D3C3194-2472-4D51-9FB8-12444A179F27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.Shared", "StoreApp\Shared\StoreApp.Shared.csproj", "{1471CF77-2A08-4152-A9C5-42A1D610CA92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreApp.Shared", "StoreApp\Shared\StoreApp.Shared.csproj", "{1471CF77-2A08-4152-A9C5-42A1D610CA92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
