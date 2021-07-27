@@ -1,7 +1,17 @@
-﻿<h1>Create Product</h1>
+﻿@page "/ProductCard/{Product}"
+
+@if (Product == null)
+{
+    <h1>Create Product</h1>
+}
+else
+{
+    <h1>Edit Product</h1>
+}
 
 
-
-@code {
-
+@code
+{
+    [Parameter]
+    public Product Product { get; set; }
 }
