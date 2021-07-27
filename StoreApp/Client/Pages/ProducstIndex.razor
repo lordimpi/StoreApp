@@ -1,4 +1,6 @@
 ﻿@page "/Product/Index"
+@inject DialogService DialogService
+@implements IDisposable
 @inject HttpClient ClientHttp
 
 <div class="container-fluid">
@@ -8,32 +10,32 @@
         <a href="Create" class="btn btn-primary">Add New</a>
     </p>
 
-    <RadzenGrid AllowFiltering="true" AllowColumnResize="true"
-                FilterMode="FilterMode.Simple" PageSize="4" AllowPaging="true" AllowSorting="true" Data="@Products" TItem="Product"
-                ColumnWidth="200px" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
+    <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true"
+                    FilterMode="FilterMode.Simple" PageSize="4" AllowPaging="true" AllowSorting="true" Data="@Products" TItem="Product"
+                    ColumnWidth="200px" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
 
         <Columns>
-            <RadzenGridColumn TItem="Product" Property="Id" Filterable="false" Title="ID" Width="50px" TextAlign="TextAlign.Center" />
-            <RadzenGridColumn TItem="Product" Title="RutaImagen" Sortable="false" Filterable="false" Width="200px">
+            <RadzenDataGridColumn TItem="Product" Property="Id" Filterable="false" Title="ID" Width="50px" TextAlign="TextAlign.Center" />
+            <RadzenDataGridColumn TItem="Product" Title="RutaImagen" Sortable="false" Filterable="false" Width="200px">
                 <Template Context="data">
                     <RadzenImage Path="@data.RutaImagen" style="width:100px;height:100px;max-width: 100%; height: auto;" />
                 </Template>
-            </RadzenGridColumn>
-            <RadzenGridColumn TItem="Product" Property="Nombre" Title="Nombre" />
-            <RadzenGridColumn TItem="Product" Property="Descripcion" Title="Descripcion" Width="150px" />
-            <RadzenGridColumn TItem="Product" Property="Precio.PrecioVenta" Title="Precio" />
-            <RadzenGridColumn TItem="Product" Property="FechaAlta" Title="Fecha de creacion" FormatString="{0:d}" />
-            <RadzenGridColumn TItem="Product" Property="FechaBaja" Title="Fecha de baja" FormatString="{0:d}" />
-            <RadzenGridColumn TItem="Product" Title="">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Product" Property="Nombre" Title="Nombre" />
+            <RadzenDataGridColumn TItem="Product" Property="Descripcion" Title="Descripcion" Width="150px" />
+            <RadzenDataGridColumn TItem="Product" Property="Precio.PrecioVenta" Title="Precio" />
+            <RadzenDataGridColumn TItem="Product" Property="FechaAlta" Title="Fecha de creacion" FormatString="{0:d}" />
+            <RadzenDataGridColumn TItem="Product" Property="FechaBaja" Title="Fecha de baja" FormatString="{0:d}" />
+            <RadzenDataGridColumn TItem="Product" Title="">
                 <Template Context="data">
                     <a class="btn btn-warning" href="/producDetail/@data.Id"><span class="oi oi-pencil"></span></a>
-                    <a class="btn btn-danger" href="/producDelet/@data.Id"><span class="oi oi-trash"></span></a>
+                    <a class="btn btn-danger" @onclick="@(()=>ShowDialog(data))"><span class="oi oi-trash"></span></a>
                 </Template>
-            </RadzenGridColumn>
+            </RadzenDataGridColumn>
 
         </Columns>
 
-    </RadzenGrid>
+    </RadzenDataGrid>
 
     <div>
         @*<div class="row">
@@ -87,8 +89,40 @@
 @code
 {
     IEnumerable<Product> Products = new List<Product>();
+    public bool Confirm { get; set; }
     protected async override Task OnInitializedAsync()
     {
         Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/ListProducts");
+        DialogService.OnOpen += Open;
+        DialogService.OnClose += Close;
+    }
+
+    public void Dispose()
+    {
+        // The DialogService is a singleton so it is advisable to unsubscribe.
+        DialogService.OnOpen -= Open;
+        DialogService.OnClose -= Close;
+    }
+
+    void Open(string title, Type type, Dictionary<string, object> parameters, DialogOptions options)
+    {
+        Console.WriteLine("Dialog opened");
+    }
+
+    void Close(dynamic result)
+    {
+        Console.WriteLine($"Dialog closed");
+    }
+
+    private async Task ShowDialog(Product product)
+    {
+        if (await DialogService.Confirm("Are you sure this record?", ""+product.Nombre, new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" }) == true)
+        {
+            Confirm = true;
+        }
+        else
+        {
+            Confirm = false;
+        }
     }
 }
