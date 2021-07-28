@@ -7,10 +7,10 @@
     <h1>Products</h1>
     <hr />
     <p>
-        <button @onclick="@(()=>ShowCardProduct(null))" class="btn btn-primary">Add New <span class="oi oi-plus"></span></button>
+        <button @onclick="@(()=>ShowCardProduct(new Product()))" class="btn btn-primary">Add New <span class="oi oi-plus"></span></button>
     </p>
 
-    <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true"
+    <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" @ref="GridProducts"
                     FilterMode="FilterMode.Simple" PageSize="4" AllowPaging="true" AllowSorting="true" Data="@Products" TItem="Product"
                     ColumnWidth="200px" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
 
@@ -22,7 +22,7 @@
                 </Template>
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Product" Property="Nombre" Title="Nombre" />
-            <RadzenDataGridColumn TItem="Product" Property="Descripcion" Title="Descripcion" Width="150px" />
+            <RadzenDataGridColumn TItem="Product" Property="Descripcion" Title="Descripcion" Width="150px" TextAlign="TextAlign.Center" />
             <RadzenDataGridColumn TItem="Product" Property="Precio.PrecioVenta" Title="Precio" />
             <RadzenDataGridColumn TItem="Product" Property="FechaAlta" Title="Fecha de creacion" FormatString="{0:d}" />
             <RadzenDataGridColumn TItem="Product" Property="FechaBaja" Title="Fecha de baja" FormatString="{0:d}" />
@@ -43,6 +43,8 @@
 {
     IEnumerable<Product> Products = new List<Product>();
     public bool Confirm { get; set; }
+    RadzenDataGrid<Product> GridProducts;
+
     protected async override Task OnInitializedAsync()
     {
         Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/ListProducts");
@@ -81,8 +83,33 @@
 
     private async Task ShowCardProduct(Product product)
     {
-        await DialogService.OpenAsync<CreateProduct>("StoreApp",
-            new Dictionary<string, object>() { { "Product", product } },
-            new DialogOptions() { Width = "900px", Height = "700px" });
+        var result = await DialogService.OpenAsync("StoreApp", ds =>
+            @<div>
+                <CreateProduct Product="product"></CreateProduct>
+                <div class="row justify-content-center">
+                    <div class="col-md-12 d-flex align-items-end justify-content-center" style="margin-top: 16px;">
+                        <RadzenButton Text="Save" Icon="save" Click="() => ds.Close(product)" Style="margin-bottom: 10px; width: 150px" />
+                        <RadzenButton Text="Cancel" Click="() => ds.Close(null)" ButtonStyle="ButtonStyle.Secondary"
+                                      Icon="cancel" Style="margin-bottom: 10px; width: 150px" />
+                    </div>
+                </div>
+            </div>,
+        new DialogOptions() { Width = "800px", Height = "700px" });
+        SaveRecord(result);
+    }
+    private void SaveRecord(Product p)
+    {
+        if (p != null)
+        {
+            if (p.Id == 0)
+            {
+                List<Product> lp = Products.ToList();
+                lp.Add(p);
+                Products = lp;
+                GridProducts.InsertRow(p);
+                GridProducts.Reload();
+                return;
+            }
+        }
     }
 }
