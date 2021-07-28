@@ -71,9 +71,13 @@
 
     private async Task ShowDialog(Product product)
     {
-        if (await DialogService.Confirm("Are you sure this record?", "" + product.Nombre, new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" }) == true)
+        if (await DialogService.Confirm("Are you sure delete this record?", "" + product.Nombre, new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" }) == true)
         {
-            Confirm = true;
+            List<Product> lp = Products.ToList();
+            lp.Remove(product);
+            Products = lp;
+            await GridProducts.Reload();
+            return;
         }
         else
         {

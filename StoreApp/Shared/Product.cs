@@ -13,7 +13,7 @@ namespace StoreApp.Shared
         {
             Nombre = "";
             Descripcion = "";
-            RutaImagen = "";
+            RutaImagen = "/images/NotFound.png";
             Precio = new Price();
         }
 

@@ -7,6 +7,7 @@
                 </div>
                 <div class="col-md-8">
                     <RadzenTextBox Style="width:100%" Name="ProductName" @bind-Value="Product.Nombre" />
+                    <ValidationMessage For="@(()=> Product.Nombre)"/>
                 </div>
             </div>
             <div class="row">
@@ -44,9 +45,18 @@
             </div>
         </RadzenFieldset>
     </div>
+    <div class="col-md-6">
+        <RadzenFieldset Text="Image Product">
+            <div class="row">
+                <div class="col-md-4 align-items-center d-flex">
+                    <RadzenImage Path="@Product.RutaImagen" Style="width: 350%"></RadzenImage>
+                </div>
+            </div>
+        </RadzenFieldset>
+    </div>
 </div>
 
-@code 
+@code
 {
     [Parameter]
     public Product Product { get; set; }
