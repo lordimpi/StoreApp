@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject HttpClient ClientHttp
+@inject NotificationService NotificationService
 
 <div class="container-fluid">
     <hr />
@@ -19,7 +20,7 @@
                     <div class="card-body">
                         <h4 class="card-title">$ @item.Precio.PrecioVenta</h4>
                         <p class="card-text">@item.Nombre</p>
-                        <a href="#" class="btn btn-success">Add to car</a>
+                        <button @onclick="AddProductToCar" class="btn btn-success">Add to car</button>
                     </div>
                 </div>
             </div>
@@ -29,7 +30,7 @@
 </div>
 @if (LayerVisible)
 {
-    <ProductDetails Product="LayerProduct" OnCancel="CancelarDialogo" OnAdding="AddProductToCar"></ProductDetails>
+    <ProductDetails Product="LayerProduct" OnCancel="DialogCancel" OnAdding="AddProductToCar"></ProductDetails>
 }
 
 @code
@@ -49,7 +50,7 @@
         LayerVisible = true;
     }
 
-    private void CancelarDialogo()
+    private void DialogCancel()
     {
         LayerVisible = false;
     }
@@ -59,7 +60,19 @@
         Product product = LayerProduct;
         SelectedProducs.Add(product);
         LayerVisible = false;
+        ShowNotification(new NotificationMessage
+        {
+            Severity = NotificationSeverity.Success,
+            Summary = "Success Summary",
+            Detail = "Product adding to car",
+            Duration = 2000
+        });
         // When you need delet item before to add sale car, use this line
         //Products.Remove(product);
+    }
+
+    private void ShowNotification(NotificationMessage message)
+    {
+        NotificationService.Notify(message);
     }
 }
