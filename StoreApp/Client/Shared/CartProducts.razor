@@ -1,34 +1,72 @@
 ﻿@page "/Selected/Products"
-<div class="modal" tabindex="-1" style="display:block;" role="dialog">
-    <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>CartProducts</h3>
-            </div>
+@inject DialogService DialogService
 
-            <div class="modal-body">
+@if (KeepBuying)
+{
+    ShowDialog();
+}
 
-            </div>
-
-            <div class="modal-footer">
-                <div class="row">
-                    <div class="col-md-4">
-                        <button type="button" class="btn btn-success" @onclick="OnKeepBuying"> Keep buying</button>
+<div>
+    @*<div class="modal" tabindex="-1" style="display:block;" role="dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>CartProducts</h3>
                     </div>
-                    <div class="col-md-4">
-                        <button type="button" class="btn btn-success"> Purchase</button>
+
+                    <div class="modal-body">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-success" @onclick="OnKeepBuying"> Keep buying</button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-success"> Purchase</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>*@
 </div>
-
 
 @code {
     [Parameter]
     public List<Product> SelectedProducts { get; set; }
     [Parameter]
-    public EventCallback OnKeepBuying { get; set; }
+    public bool KeepBuying { get; set; }
+
+    private async void ShowDialog()
+    {
+        var result = await DialogService.OpenAsync("StoreApp", ds =>
+        @<div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 d-flex align-items-end justify-content-center" style="margin-top: 16px;">
+                    <RadzenButton Text="Back" Icon="shopping_bag" Click="() => ds.Close(true)" Style="margin-bottom: 10px; width: 150px" 
+                                  ButtonStyle="ButtonStyle.Info" />
+                    <RadzenButton Text="Buy" Click="() => ds.Close(false)" ButtonStyle="ButtonStyle.Secondary"
+                                  Icon="attach_money" Style="margin-bottom: 10px; width: 150px"/>
+                </div>
+            </div>
+        </div>,
+        new DialogOptions() { Width = "800px", Height = "700px" });
+        if (result)
+        {
+            KeepBuying = false;
+        }
+    }
+
+    void Open(string title, Type type, Dictionary<string, object> parameters, DialogOptions options)
+    {
+        Console.WriteLine("Dialog opened");
+    }
+
+    void Close(dynamic result)
+    {
+        Console.WriteLine($"Dialog closed");
+    }
 
 }

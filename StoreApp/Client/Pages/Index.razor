@@ -36,7 +36,8 @@
 }
 @if (KeepBuying)
 {
-    <CartProducts SelectedProducts="SelectedProducs" OnKeepBuying="DialogCancel"></CartProducts>
+    <CartProducts SelectedProducts="SelectedProducs" KeepBuying="KeepBuying"></CartProducts>
+    KeepBuying = false;
 }
 
 @code
@@ -46,6 +47,7 @@
     bool KeepBuying;
     Product LayerProduct;
     List<Product> SelectedProducs = new List<Product>();
+
     protected async override Task OnInitializedAsync()
     {
         Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/ListProducts");
@@ -65,7 +67,6 @@
     private void DialogCancel()
     {
         LayerVisible = false;
-        KeepBuying = false;
     }
 
     private void AddProductToCar()
