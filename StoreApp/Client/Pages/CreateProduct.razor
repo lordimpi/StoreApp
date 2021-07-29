@@ -6,19 +6,16 @@
             margin-bottom: 16px;
         }
     </style>
-    <RadzenTemplateForm Data="@Product">
-        @if (Product.Id == 0)
-        {
-            <h1>Create Product</h1>
-            <FormDatas Product="Product" />
-        }
-        else
-        {
-            <h1>Edit Product</h1>
-            <FormDatas Product="Product" />
-        }
-    </RadzenTemplateForm>
-
+    @if (Product.Id == 0)
+    {
+        <h1>Create Product</h1>
+        <FormDatas Product="Product" />
+    }
+    else
+    {
+        <h1>Edit Product</h1>
+        <FormDatas Product="Product" />
+    }
 </RadzenCard>
 
 

@@ -89,14 +89,16 @@
     {
         var result = await DialogService.OpenAsync("StoreApp", ds =>
             @<div>
-                <CreateProduct Product="product"></CreateProduct>
-                <div class="row justify-content-center">
-                    <div class="col-md-12 d-flex align-items-end justify-content-center" style="margin-top: 16px;">
-                        <RadzenButton Text="Save" Icon="save" Click="() => ds.Close(product)" Style="margin-bottom: 10px; width: 150px" />
-                        <RadzenButton Text="Cancel" Click="() => ds.Close(null)" ButtonStyle="ButtonStyle.Secondary"
-                                      Icon="cancel" Style="margin-bottom: 10px; width: 150px" />
-                    </div>
-                </div>
+                 <EditForm Model="@product">
+                     <CreateProduct Product="product"></CreateProduct>
+                     <div class="row justify-content-center">
+                         <div class="col-md-12 d-flex align-items-end justify-content-center" style="margin-top: 16px;">
+                             <RadzenButton ButtonType="ButtonType.Submit" Text="Save" Icon="save" Click="() => ds.Close(product)" Style="margin-bottom: 10px; width: 150px" />
+                             <RadzenButton Text="Cancel" Click="() => ds.Close(null)" ButtonStyle="ButtonStyle.Secondary"
+                                           Icon="cancel" Style="margin-bottom: 10px; width: 150px" />
+                         </div>
+                     </div>
+                 </EditForm>
             </div>,
         new DialogOptions() { Width = "800px", Height = "700px" });
         SaveRecord(result);

@@ -45,7 +45,7 @@
         @<div>
             <div class="row justify-content-center">
                 <div class="col-md-12 d-flex align-items-end justify-content-center" style="margin-top: 16px;">
-                    <RadzenButton Text="Back" Icon="shopping_bag" Click="() => ds.Close(true)" Style="margin-bottom: 10px; width: 150px" 
+                    <RadzenButton Text="Back" Icon="shopping_bag" Click="() => ds.Close(null)" Style="margin-bottom: 10px; width: 150px" 
                                   ButtonStyle="ButtonStyle.Info" />
                     <RadzenButton Text="Buy" Click="() => ds.Close(false)" ButtonStyle="ButtonStyle.Secondary"
                                   Icon="attach_money" Style="margin-bottom: 10px; width: 150px"/>
@@ -53,20 +53,10 @@
             </div>
         </div>,
         new DialogOptions() { Width = "800px", Height = "700px" });
-        if (result)
+        if (result == null)
         {
             KeepBuying = false;
         }
-    }
-
-    void Open(string title, Type type, Dictionary<string, object> parameters, DialogOptions options)
-    {
-        Console.WriteLine("Dialog opened");
-    }
-
-    void Close(dynamic result)
-    {
-        Console.WriteLine($"Dialog closed");
     }
 
 }
