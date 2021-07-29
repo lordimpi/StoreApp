@@ -1,27 +1,45 @@
-﻿@page "/Selected/Products"
-@inject DialogService DialogService
-
-@if (KeepBuying)
-{
-    ShowDialog();
-}
+﻿@using System.Linq;
 
 <div>
-    @*<div class="modal" tabindex="-1" style="display:block;" role="dialog">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3>CartProducts</h3>
-                    </div>
-
-                    <div class="modal-body">
-
-                    </div>
-
-                    <div class="modal-footer">
+    <div class="modal" tabindex="-1" style="display:block;" role="dialog">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Cart Products</h3>
+                </div>
+                <div class="modal-body">
+                    <RadzenDataGrid @ref="productGrid" AllowFiltering="false" AllowPaging="false" PageSize="0" AllowSorting="false"
+                                    Data="@SelectedProducts" TItem="Product">
+                        <Columns>
+                            <RadzenDataGridColumn Width="50px" TItem="Product" Title="#" Filterable="false" Sortable="false"
+                                                  TextAlign="TextAlign.Center">
+                                <Template>
+                                    @(SelectedProducts.IndexOf(context) + 1)
+                                </Template>
+                            </RadzenDataGridColumn>
+                            <RadzenDataGridColumn Width="200px" TItem="Product" Property="Nombre" Title="Nombre">
+                                <FooterTemplate>
+                                    Displayed products: <b>@SelectedProducts.Count()</b> of <b>@SelectedProducts.Count()</b>
+                                </FooterTemplate>
+                            </RadzenDataGridColumn>
+                            <RadzenDataGridColumn TItem="Product" Property="Precio.PrecioVenta" Title="Precio">
+                                <Template Context="p">
+                                    @String.Format(new System.Globalization.CultureInfo("en-US"), "{0:C}", p.Precio.PrecioVenta)
+                                </Template>
+                                <FooterTemplate>
+                                    Total amount: <b>
+                                        @String.Format(new System.Globalization.CultureInfo("en-US"), "{0:C}", SelectedProducts.Sum(p => p.Precio.PrecioVenta))
+                                    </b>
+                                </FooterTemplate>
+                            </RadzenDataGridColumn>
+                        </Columns>
+                    </RadzenDataGrid>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-4">
-                                <button type="button" class="btn btn-success" @onclick="OnKeepBuying"> Keep buying</button>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-success" @onclick="OnkeepBuying"> Back</button>
                             </div>
                             <div class="col-md-4">
                                 <button type="button" class="btn btn-success"> Purchase</button>
@@ -30,33 +48,29 @@
                     </div>
                 </div>
             </div>
-        </div>*@
+        </div>
+    </div>
 </div>
 
-@code {
+@code
+{
     [Parameter]
     public List<Product> SelectedProducts { get; set; }
     [Parameter]
     public bool KeepBuying { get; set; }
+    [Parameter]
+    public EventCallback OnkeepBuying { get; set; }
 
-    private async void ShowDialog()
+    RadzenDataGrid<Product> productGrid;
+
+    private double Total()
     {
-        var result = await DialogService.OpenAsync("StoreApp", ds =>
-        @<div>
-            <div class="row justify-content-center">
-                <div class="col-md-12 d-flex align-items-end justify-content-center" style="margin-top: 16px;">
-                    <RadzenButton Text="Back" Icon="shopping_bag" Click="() => ds.Close(null)" Style="margin-bottom: 10px; width: 150px" 
-                                  ButtonStyle="ButtonStyle.Info" />
-                    <RadzenButton Text="Buy" Click="() => ds.Close(false)" ButtonStyle="ButtonStyle.Secondary"
-                                  Icon="attach_money" Style="margin-bottom: 10px; width: 150px"/>
-                </div>
-            </div>
-        </div>,
-        new DialogOptions() { Width = "800px", Height = "700px" });
-        if (result == null)
+        double Total = 0;
+        foreach (var item in SelectedProducts)
         {
-            KeepBuying = false;
+            Total += item.Precio.PrecioVenta;
         }
+        return Total;
     }
 
 }

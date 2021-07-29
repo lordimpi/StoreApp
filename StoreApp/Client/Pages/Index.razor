@@ -22,7 +22,7 @@
                     <div class="card-body">
                         <p class="card-title"><b>$ @item.Precio.PrecioVenta</b></p>
                         <p class="card-text">@item.Nombre</p>
-                        <button @onclick="AddProductToCar" class="btn btn-success">Add to cart</button>
+                        <button @onclick="@(()=>AddProductToCar(item))" class="btn btn-success">Add to cart</button>
                     </div>
                 </div>
             </div>
@@ -36,8 +36,7 @@
 }
 @if (KeepBuying)
 {
-    <CartProducts SelectedProducts="SelectedProducs" KeepBuying="KeepBuying"></CartProducts>
-    KeepBuying = false;
+    <CartProducts SelectedProducts="SelectedProducts" KeepBuying="KeepBuying" OnkeepBuying="DialogCancel"></CartProducts>
 }
 
 @code
@@ -46,7 +45,7 @@
     bool LayerVisible;
     bool KeepBuying;
     Product LayerProduct;
-    List<Product> SelectedProducs = new List<Product>();
+    List<Product> SelectedProducts = new List<Product>();
 
     protected async override Task OnInitializedAsync()
     {
@@ -58,6 +57,7 @@
         KeepBuying = true;
     }
 
+
     private void ShowModal(Product product)
     {
         LayerProduct = product;
@@ -67,12 +67,13 @@
     private void DialogCancel()
     {
         LayerVisible = false;
+        KeepBuying = false;
     }
 
     private void AddProductToCar()
     {
         Product product = LayerProduct;
-        SelectedProducs.Add(product);
+        SelectedProducts.Add(product);
         LayerVisible = false;
         ShowNotification(new NotificationMessage
         {
@@ -84,7 +85,20 @@
         // When you need delet item before to add sale car, use this line
         //Products.Remove(product);
     }
-
+    private void AddProductToCar(Product p)
+    {
+        SelectedProducts.Add(p);
+        LayerVisible = false;
+        ShowNotification(new NotificationMessage
+        {
+            Severity = NotificationSeverity.Success,
+            Summary = "Success Summary",
+            Detail = "Product adding to car",
+            Duration = 2000
+        });
+        // When you need delet item before to add sale car, use this line
+        //Products.Remove(product);
+    }
     private void ShowNotification(NotificationMessage message)
     {
         NotificationService.Notify(message);
