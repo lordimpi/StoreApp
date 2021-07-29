@@ -1,23 +1,30 @@
 ﻿<div class="modal bg-secondary" tabindex="-1" style="display:block;" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">@Product.Nombre</h4>
             </div>
             <div class="modal-body">
+                <div class="container">
+                    <img src="/@Product.RutaImagen" class="mx-auto d-block"
+                         style="width:300px;height:300px;max-width: 300%; height: auto;" />
+                </div>
+                <hr />
                 <p>@Product.Descripcion</p>
-                <p>@Product.Precio.PrecioVenta.ToString() $</p>
+                <p><b>$ @Product.Precio.PrecioVenta.ToString()</b></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"
-                        @onclick="OnCancel">Cancel</button>
-                <button type="button" class="btn btn-success" @onclick="OnAdding">Add</button>
+                        @onclick="OnCancel">
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-success" @onclick="OnAdding">Add to cart</button>
             </div>
         </div>
     </div>
 </div>
 
-@code 
+@code
 {
     [Parameter]
     public Product Product { get; set; }

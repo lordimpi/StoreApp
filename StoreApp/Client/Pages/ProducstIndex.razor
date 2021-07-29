@@ -28,8 +28,8 @@
             <RadzenDataGridColumn TItem="Product" Property="FechaBaja" Title="Fecha de baja" FormatString="{0:d}" />
             <RadzenDataGridColumn TItem="Product" Title="">
                 <Template Context="data">
-                    <a class="btn btn-warning" @onclick="@(()=>ShowCardProduct(data))"><span class="oi oi-pencil"></span></a>
-                    <a class="btn btn-danger" @onclick="@(()=>ShowDialog(data))"><span class="oi oi-trash"></span></a>
+                    <button class="btn btn-md btn-warning" @onclick="@(()=>ShowCardProduct(data))"><span class="oi oi-pencil"></span></button>  
+                    <button class="btn btn-md btn-danger" @onclick="@(()=>ShowDialog(data))"><span class="oi oi-trash"></span></button>
                 </Template>
             </RadzenDataGridColumn>
 

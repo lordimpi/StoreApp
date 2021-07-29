@@ -639,3 +639,5 @@ D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\Razor\Pages\CreateProduct.razor.g.cs
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\RazorDeclaration\Shared\FormDatas.razor.g.cs
 D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\Razor\Shared\FormDatas.razor.g.cs
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\RazorDeclaration\Shared\CartProducts.razor.g.cs
+D:\Unicauca\Programacion\Udemy\Blazor\StoreApp\StoreApp\Client\obj\Debug\net5.0\Razor\Shared\CartProducts.razor.g.cs
