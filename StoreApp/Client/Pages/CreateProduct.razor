@@ -1,0 +1,65 @@
+﻿@using System.Text.Json
+@using System.Text.Json.Serialization
+
+<RadzenTemplateForm TItem="Product" Data="@Product" Submit=@OnSave InvalidSubmit=@OnInvalidSubmit>
+    <div>
+        <div class="modal" tabindex="-1" style="display:block;" role="dialog">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2><b>StoreApp</b></h2>
+                    </div>
+                    <div class="modal-body">
+                        <RadzenCard Style="margin-bottom: 40px">
+                            <style>
+                                form .row {
+                                    margin-bottom: 16px;
+                                }
+                            </style>
+                            @if (Product.Id == 0)
+                            {
+                                <h1>Create Product</h1>
+                                <FormDatas Product="Product" />
+                            }
+                            else
+                            {
+                                <h1>Edit Product</h1>
+                                <FormDatas Product="Product" />
+                            }
+                        </RadzenCard>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary"> Save</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-secondary" @onclick="OnClose"> Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</RadzenTemplateForm>
+
+
+@code
+{
+    [Parameter] public Product Product { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public EventCallback OnSave { get; set; }
+
+    void OnSubmit(Product model)
+    {
+        Console.WriteLine($"Submit: {JsonSerializer.Serialize(model, new JsonSerializerOptions() { WriteIndented = true })}");
+    }
+
+    void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
+    {
+        Console.WriteLine($"InvalidSubmit: {JsonSerializer.Serialize(args, new JsonSerializerOptions() { WriteIndented = true })}");
+    }
+}

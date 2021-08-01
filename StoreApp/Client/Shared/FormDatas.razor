@@ -1,0 +1,67 @@
+﻿<div class="row">
+    <div class="col-md-6">
+        <RadzenFieldset Text="Product Info">
+            <div class="row">
+                <div class="col-md-4 align-items-center d-flex">
+                    <RadzenLabel Text="Nombre" />
+                </div>
+                <div class="col-md-8">
+                    <RadzenTextBox Style="width:100%" Name="ProductName" @bind-Value="Product.Nombre" />
+                    <RadzenRequiredValidator Component="ProductName" Text="Product name is required" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 align-items-center d-flex">
+                    <RadzenLabel Text="Precio $" />
+                </div>
+                <div class="col-md-8">
+                    <RadzenNumeric TValue="double" Min="1" Max="999999999" ShowUpDown="false" style="width: 100%;"
+                                   Name="ProductPrice" @bind-Value="Product.Precio.PrecioVenta" />
+                    <RadzenRequiredValidator Component="ProductPrice" Text="Price is required" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 align-items-center d-flex">
+                    <RadzenLabel Text="Fecha de creación" />
+                </div>
+                <div class="col-md-8">
+                    <RadzenDatePicker style="width: 100%;" Name="ProductDateH" @bind-Value="Product.FechaAlta" DateFormat="d" />
+                    <RadzenRequiredValidator Component="ProductDateH" Text="Date is required" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 align-items-center d-flex">
+                    <RadzenLabel Text="Fecha de baja" />
+                </div>
+                <div class="col-md-8">
+                    <RadzenDatePicker style="width: 100%;" Name="ProductDateB" @bind-Value="Product.FechaBaja" DateFormat="d" />
+                    <RadzenRequiredValidator Component="ProductDateB" Text="Date is required" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 align-items-center d-flex">
+                    <RadzenLabel Text="Descripción" />
+                </div>
+                <div class="col-md-8">
+                    <RadzenTextArea MaxLength="1000" Placeholder="Escribir aqui..." @bind-value="Product.Descripcion" />
+                </div>
+            </div>
+        </RadzenFieldset>
+    </div>
+    <div class="col-md-6">
+        <RadzenFieldset Text="Image Product">
+            <div class="row">
+                <div class="col-md-4 align-items-center d-flex">
+                    <RadzenImage Path="@Product.RutaImagen" Style="width: 350%"></RadzenImage>
+                </div>
+            </div>
+        </RadzenFieldset>
+    </div>
+</div>
+
+@code
+{
+    [Parameter]
+    public Product Product { get; set; }
+}

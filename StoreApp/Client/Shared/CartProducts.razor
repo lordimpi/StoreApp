@@ -1,0 +1,70 @@
+﻿@using System.Linq;
+
+<div>
+    <div class="modal" tabindex="-1" style="display:block;" role="dialog">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><b>Cart Products</b></h2>
+                </div>
+                <div class="modal-body">
+                    <RadzenDataGrid @ref="productGrid" AllowFiltering="false" AllowPaging="false" PageSize="0" AllowSorting="false"
+                                    Data="@SelectedProducts" TItem="Product">
+                        <Columns>
+                            <RadzenDataGridColumn Width="350px" TItem="Product" Property="Nombre" Title="Nombre">
+                                <FooterTemplate>
+                                    Displayed products: <b>@SelectedProducts.Count()</b>
+                                </FooterTemplate>
+                            </RadzenDataGridColumn>
+                            <RadzenDataGridColumn TItem="Product" Property="Precio.PrecioVenta" Title="Precio" TextAlign="TextAlign.Center">
+                                <Template Context="p">
+                                    @String.Format(new System.Globalization.CultureInfo("en-US"), "{0:C}", p.Precio.PrecioVenta)
+                                </Template>
+                                <FooterTemplate>
+                                    Total : <b>
+                                        @String.Format(new System.Globalization.CultureInfo("en-US"), "{0:C}", SelectedProducts.Sum(p => p.Precio.PrecioVenta))
+                                    </b>
+                                </FooterTemplate>
+                            </RadzenDataGridColumn>
+                            <RadzenDataGridColumn TItem="Product" Title="" TextAlign="TextAlign.Center">
+                                <Template Context="data">
+                                    <button class="btn btn-md btn-danger" @onclick="@(()=>DeleteProduct(data))"><span class="oi oi-delete"></span></button>
+                                </Template>
+                            </RadzenDataGridColumn>
+                        </Columns>
+                    </RadzenDataGrid>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 d-flex justify-content-end">
+                                <button type="button" class="btn btn-success" @onclick="OnkeepBuying"> Back</button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-success"> Pay</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code
+{
+    [Parameter]
+    public List<Product> SelectedProducts { get; set; }
+    [Parameter]
+    public bool KeepBuying { get; set; }
+    [Parameter]
+    public EventCallback OnkeepBuying { get; set; }
+    RadzenDataGrid<Product> productGrid;
+
+    private async void DeleteProduct(Product product)
+    {
+        SelectedProducts.Remove(product);
+        await productGrid.Reload();
+    }
+
+}

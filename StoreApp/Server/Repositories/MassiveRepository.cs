@@ -11,16 +11,16 @@ namespace StoreApp.Server.Repositories
 {
     public class MassiveRepository : IMassiveRepository
     {
-        private string StringConnection;
+        private readonly string StringConnection;
 
         public MassiveRepository(DataAccess stringConnection)
         {
-            this.StringConnection = stringConnection.ConnectionStringSQL;
+            StringConnection = stringConnection.ConnectionStringSQL;
         }
 
         private SqlConnection Connection()
         {
-            return new SqlConnection(this.StringConnection);
+            return new SqlConnection(StringConnection);
         }
         public async Task<IEnumerable<Product>> SeedDatas()
         {
@@ -75,6 +75,7 @@ namespace StoreApp.Server.Repositories
                     product.Nombre = sqlDataReader["nombre"].ToString();
                     product.Descripcion = sqlDataReader["descripcion"].ToString();
                     product.RutaImagen = sqlDataReader["rutaImagen"].ToString();
+                    product.FechaAlta = Convert.ToDateTime(sqlDataReader["fechaAlta"]);
 
                     if (sqlDataReader["precioVenta"] != null && Convert.ToDouble(sqlDataReader["precioVenta"]) > 0)
                     {
