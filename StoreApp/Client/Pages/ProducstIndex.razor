@@ -40,9 +40,9 @@
 </div>
 
 @if (LayerVisible)
-	{
-		 <CreateProduct Product="Product" OnClose="CloseModal" OnSave="(()=>SaveRecord(Product))"></CreateProduct>
-	}
+{
+    <CreateProduct Product="Product" OnClose="CloseModal" OnSave="(()=>SaveRecord(Product))"></CreateProduct>
+}
 
 @code
 {
@@ -51,31 +51,31 @@
     bool LayerVisible;
     Product Product;
 
-    protected async override Task OnInitializedAsync()
+protected async override Task OnInitializedAsync()
     {
         Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/ListProducts");
         DialogService.OnOpen += Open;
         DialogService.OnClose += Close;
     }
 
-    public void Dispose()
+public void Dispose()
     {
         // The DialogService is a singleton so it is advisable to unsubscribe.
         DialogService.OnOpen -= Open;
         DialogService.OnClose -= Close;
     }
 
-    void Open(string title, Type type, Dictionary<string, object> parameters, DialogOptions options)
+void Open(string title, Type type, Dictionary<string, object> parameters, DialogOptions options)
     {
         Console.WriteLine("Dialog opened");
     }
 
-    void Close(dynamic result)
+void Close(dynamic result)
     {
         Console.WriteLine($"Dialog closed");
     }
 
-    private async Task ShowDialog(Product product)
+private async Task ShowDialog(Product product)
     {
         if (await DialogService.Confirm("Are you sure delete this record?", "" + product.Nombre, new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" }) == true)
         {
@@ -87,7 +87,7 @@
         }
     }
 
-    private async Task ShowCardProduct(Product product)
+private async Task ShowCardProduct(Product product)
     {
         var result = await DialogService.OpenAsync("StoreApp", ds =>
     @<div>
@@ -118,7 +118,7 @@ new DialogOptions() { Width = "800px", Height = "700px" });
         Product = null;
     }
 
-    private void SaveRecord(Product p)
+    private async void SaveRecord(Product p)
     {
         LayerVisible = false;
         if (p != null)
@@ -128,9 +128,9 @@ new DialogOptions() { Width = "800px", Height = "700px" });
                 List<Product> lp = Products.ToList();
                 lp.Add(p);
                 Products = lp;
-                GridProducts.InsertRow(p);
-                GridProducts.Reload();
-                return;
+                var response = await ClientHttp.PostAsJsonAsync("api/SaveProduct", p);
+                await GridProducts.InsertRow(p);
+                await GridProducts.Reload();
             }
         }
     }

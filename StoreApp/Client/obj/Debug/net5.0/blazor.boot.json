@@ -198,12 +198,12 @@
       "netstandard.dll": "sha256-vJpyW6cE\/+ewo5rVB5JUu9x2f8aLnqoIazac8ef5FzQ=",
       "System.Private.CoreLib.dll": "sha256-CvQTDivHJZAtRXyCbDa5f5+okJt39WRFrZSmXTMSau0=",
       "StoreApp.Shared.dll": "sha256-uXXc1TSsOfVdk+fSceN+jvlfccTpLdVQ4JYmf0E3p60=",
-      "StoreApp.Client.dll": "sha256-b1BrIHiVA1A2I0ZSNG+Ighvnd60jOIvh4Ff7LdKs06Q="
+      "StoreApp.Client.dll": "sha256-ytFfCuiLOh0WvD8TGc1tiBomqNh63Qjo8NchJN2viJo="
     },
     "lazyAssembly": null,
     "pdb": {
       "StoreApp.Shared.pdb": "sha256-oJSDJgumesGCKS7Pvx\/ZTNAArwzlR\/4MgDEpcaTUVUM=",
-      "StoreApp.Client.pdb": "sha256-H3TdyyhcXEdhfbiKLCjaaBn+nQq912HlHcUBwCVo1Nw="
+      "StoreApp.Client.pdb": "sha256-jKpWJB70I6WItf+AiHkAv8eaEusR9cLhUhxSqbBbYIs="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-2OdnPsDgJyoSaSlvebGMRd2MxC+4UIqparqVrQZAFDE=",

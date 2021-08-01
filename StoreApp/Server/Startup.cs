@@ -28,6 +28,7 @@ namespace StoreApp.Server
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddScoped<IMassiveRepository, MassiveRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             var ConnectionStringSqlConfiguration = new DataAccess(Configuration.GetConnectionString("SQL"));
             services.AddSingleton(ConnectionStringSqlConfiguration);
