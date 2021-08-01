@@ -20,7 +20,6 @@ namespace StoreApp.Shared
         public int Id { get; set; }
         [Required(ErrorMessage = "* El campo nombre es obligatorio")]
         public string Nombre { get; set; }
-        [Required(ErrorMessage = "* La ruta de la imagen es obligatoria")]
         public string RutaImagen { get; set; }
         [Required(ErrorMessage = "* El campo fecha de Alta es obligatorio")]
         public DateTime FechaAlta { get; set; }

@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-md-8">
                     <RadzenTextBox Style="width:100%" Name="ProductName" @bind-Value="Product.Nombre" />
-                    <ValidationMessage For="@(()=> Product.Nombre)"/>
+                    <RadzenRequiredValidator Component="ProductName" Text="Product name is required" />
                 </div>
             </div>
             <div class="row">
@@ -17,6 +17,7 @@
                 <div class="col-md-8">
                     <RadzenNumeric TValue="double" Min="1" Max="999999999" ShowUpDown="false" style="width: 100%;"
                                    Name="ProductPrice" @bind-Value="Product.Precio.PrecioVenta" />
+                    <RadzenRequiredValidator Component="ProductPrice" Text="Price is required" />
                 </div>
             </div>
             <div class="row">
@@ -25,6 +26,7 @@
                 </div>
                 <div class="col-md-8">
                     <RadzenDatePicker style="width: 100%;" Name="ProductDateH" @bind-Value="Product.FechaAlta" DateFormat="d" />
+                    <RadzenRequiredValidator Component="ProductDateH" Text="Date is required" />
                 </div>
             </div>
             <div class="row">
@@ -33,6 +35,8 @@
                 </div>
                 <div class="col-md-8">
                     <RadzenDatePicker style="width: 100%;" Name="ProductDateB" @bind-Value="Product.FechaBaja" DateFormat="d" />
+                    <RadzenRequiredValidator Component="ProductDateB" Text="Date is required" />
+
                 </div>
             </div>
             <div class="row">

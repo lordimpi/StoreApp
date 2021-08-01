@@ -7,7 +7,7 @@
     <h1>Products</h1>
     <hr />
     <p>
-        <button @onclick="@(()=>ShowCardProduct(new Product()))" class="btn btn-primary">Add New <span class="oi oi-plus"></span></button>
+        <button @onclick="@(()=>ShowModal(new Product()))" class="btn btn-primary">Add New <span class="oi oi-plus"></span></button>
     </p>
 
     <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" @ref="GridProducts"
@@ -16,19 +16,19 @@
 
         <Columns>
             <RadzenDataGridColumn TItem="Product" Property="Id" Filterable="false" Title="ID" Width="50px" TextAlign="TextAlign.Center" />
-            <RadzenDataGridColumn TItem="Product" Title="RutaImagen" Sortable="false" Filterable="false" Width="200px">
+            <RadzenDataGridColumn TItem="Product" Title="RutaImagen" Sortable="false" Filterable="false" Width="200px" TextAlign="TextAlign.Center">
                 <Template Context="data">
                     <RadzenImage Path="@data.RutaImagen" style="width:100px;height:100px;max-width: 100%; height: auto;" />
                 </Template>
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Product" Property="Nombre" Title="Nombre" />
-            <RadzenDataGridColumn TItem="Product" Property="Descripcion" Title="Descripcion" Width="150px" TextAlign="TextAlign.Center" />
-            <RadzenDataGridColumn TItem="Product" Property="Precio.PrecioVenta" Title="Precio" />
-            <RadzenDataGridColumn TItem="Product" Property="FechaAlta" Title="Fecha de creacion" FormatString="{0:d}" />
-            <RadzenDataGridColumn TItem="Product" Property="FechaBaja" Title="Fecha de baja" FormatString="{0:d}" />
-            <RadzenDataGridColumn TItem="Product" Title="">
+            <RadzenDataGridColumn TItem="Product" Property="Descripcion" Title="Descripcion" Width="200px" TextAlign="TextAlign.Center" />
+            <RadzenDataGridColumn TItem="Product" Property="Precio.PrecioVenta" Title="Precio" TextAlign="TextAlign.Center" />
+            <RadzenDataGridColumn TItem="Product" Property="FechaAlta" Title="Fecha de creacion" FormatString="{0:d}" TextAlign="TextAlign.Center" />
+            <RadzenDataGridColumn TItem="Product" Property="FechaBaja" Title="Fecha de baja" FormatString="{0:d}" TextAlign="TextAlign.Center" />
+            <RadzenDataGridColumn TItem="Product" Sortable="false" Filterable="false" TextAlign="TextAlign.Center">
                 <Template Context="data">
-                    <button class="btn btn-md btn-warning" @onclick="@(()=>ShowCardProduct(data))"><span class="oi oi-pencil"></span></button>  
+                    <button class="btn btn-md btn-warning" @onclick="@(()=>ShowModal(data))"><span class="oi oi-pencil"></span></button>
                     <button class="btn btn-md btn-danger" @onclick="@(()=>ShowDialog(data))"><span class="oi oi-trash"></span></button>
                 </Template>
             </RadzenDataGridColumn>
@@ -39,11 +39,17 @@
 
 </div>
 
+@if (LayerVisible)
+	{
+		 <CreateProduct Product="Product" OnClose="CloseModal" OnSave="(()=>SaveRecord(Product))"></CreateProduct>
+	}
+
 @code
 {
     IEnumerable<Product> Products = new List<Product>();
-    public bool Confirm { get; set; }
     RadzenDataGrid<Product> GridProducts;
+    bool LayerVisible;
+    Product Product;
 
     protected async override Task OnInitializedAsync()
     {
@@ -79,33 +85,42 @@
             await GridProducts.Reload();
             return;
         }
-        else
-        {
-            Confirm = false;
-        }
     }
 
     private async Task ShowCardProduct(Product product)
     {
         var result = await DialogService.OpenAsync("StoreApp", ds =>
-            @<div>
-                 <EditForm Model="@product">
-                     <CreateProduct Product="product"></CreateProduct>
-                     <div class="row justify-content-center">
-                         <div class="col-md-12 d-flex align-items-end justify-content-center" style="margin-top: 16px;">
-                             <RadzenButton ButtonType="ButtonType.Submit" Text="Save" Icon="save" Click="() => ds.Close(product)" Style="margin-bottom: 10px; width: 150px" />
-                             <RadzenButton Text="Cancel" Click="() => ds.Close(null)" ButtonStyle="ButtonStyle.Secondary"
-                                           Icon="cancel" Style="margin-bottom: 10px; width: 150px" />
-                         </div>
-                     </div>
-                 </EditForm>
-            </div>,
-        new DialogOptions() { Width = "800px", Height = "700px" });
+    @<div>
+        <EditForm Model="@product">
+            <CreateProduct Product="product"></CreateProduct>
+            <div class="row justify-content-center">
+                <div class="col-md-12 d-flex align-items-end justify-content-center" style="margin-top: 16px;">
+                    <RadzenButton ButtonType="ButtonType.Submit" Text="Save" Icon="save" Click="() => ds.Close(product)" Style="margin-bottom: 10px; width: 150px" />
+                    <RadzenButton Text="Cancel" Click="() => ds.Close(null)" ButtonStyle="ButtonStyle.Secondary"
+                                  Icon="cancel" Style="margin-bottom: 10px; width: 150px" />
+                </div>
+            </div>
+        </EditForm>
+    </div>,
+new DialogOptions() { Width = "800px", Height = "700px" });
         SaveRecord(result);
+    }
+
+    private void ShowModal(Product product)
+    {
+        LayerVisible = true;
+        Product = product;
+    }
+
+    private void CloseModal()
+    {
+        LayerVisible = false;
+        Product = null;
     }
 
     private void SaveRecord(Product p)
     {
+        LayerVisible = false;
         if (p != null)
         {
             if (p.Id == 0)
