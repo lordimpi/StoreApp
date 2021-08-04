@@ -76,6 +76,10 @@ namespace StoreApp.Server.Repositories
                     product.Descripcion = sqlDataReader["descripcion"].ToString();
                     product.RutaImagen = sqlDataReader["rutaImagen"].ToString();
                     product.FechaAlta = Convert.ToDateTime(sqlDataReader["fechaAlta"]);
+                    if (!DBNull.Value.Equals(sqlDataReader["fechaBaja"]))
+                    {
+                        product.FechaBaja = Convert.ToDateTime(sqlDataReader["fechaBaja"]);
+                    }
 
                     if (sqlDataReader["precioVenta"] != null && Convert.ToDouble(sqlDataReader["precioVenta"]) > 0)
                     {

@@ -11,6 +11,7 @@ namespace StoreApp.Server.Repositories
         public Task<Product> Save(Product product);
         public Task<Product> Update(Product product);
         public Task<Product> Find(int id);
+        public Task<Product> GetLastProduct();
         public Task<bool> Delet(int id);
 
     }

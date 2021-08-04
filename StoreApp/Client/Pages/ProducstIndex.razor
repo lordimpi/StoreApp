@@ -2,6 +2,7 @@
 @inject DialogService DialogService
 @implements IDisposable
 @inject HttpClient ClientHttp
+@inject NotificationService NotificationService
 
 <div class="container-fluid">
     <h1>Products</h1>
@@ -29,7 +30,7 @@
             <RadzenDataGridColumn TItem="Product" Sortable="false" Filterable="false" TextAlign="TextAlign.Center">
                 <Template Context="data">
                     <button class="btn btn-md btn-warning" @onclick="@(()=>ShowModal(data))"><span class="oi oi-pencil"></span></button>
-                    <button class="btn btn-md btn-danger" @onclick="@(()=>ShowDialog(data))"><span class="oi oi-trash"></span></button>
+                    <button class="btn btn-md btn-danger" @onclick="@(()=>DeleteProduct(data))"><span class="oi oi-trash"></span></button>
                 </Template>
             </RadzenDataGridColumn>
 
@@ -41,7 +42,14 @@
 
 @if (LayerVisible)
 {
-    <CreateProduct Product="Product" OnClose="CloseModal" OnSave="(()=>SaveRecord(Product))"></CreateProduct>
+    <CreateProduct Product="Product" OnClose="CloseModal" OnSave="(() => SaveRecord(Product))"></CreateProduct>
+}
+else
+{
+    if (GridProducts != null)
+    {
+        GridProducts.Reload();
+    }
 }
 
 @code
@@ -51,43 +59,51 @@
     bool LayerVisible;
     Product Product;
 
-protected async override Task OnInitializedAsync()
+    protected async override Task OnInitializedAsync()
     {
         Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/ListProducts");
         DialogService.OnOpen += Open;
         DialogService.OnClose += Close;
     }
 
-public void Dispose()
+    public void Dispose()
     {
         // The DialogService is a singleton so it is advisable to unsubscribe.
         DialogService.OnOpen -= Open;
         DialogService.OnClose -= Close;
     }
 
-void Open(string title, Type type, Dictionary<string, object> parameters, DialogOptions options)
+    void Open(string title, Type type, Dictionary<string, object> parameters, DialogOptions options)
     {
         Console.WriteLine("Dialog opened");
     }
 
-void Close(dynamic result)
+    void Close(dynamic result)
     {
         Console.WriteLine($"Dialog closed");
     }
 
-private async Task ShowDialog(Product product)
+    private async Task DeleteProduct(Product product)
     {
         if (await DialogService.Confirm("Are you sure delete this record?", "" + product.Nombre, new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" }) == true)
         {
+            var response = await ClientHttp.DeleteAsync($"api/DeletProduct/{product.Id}");
             List<Product> lp = Products.ToList();
             lp.Remove(product);
             Products = lp;
             await GridProducts.Reload();
+            ShowNotification(new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Success Summary",
+                Detail = "Product deleted",
+                Duration = 2000
+            });
             return;
         }
     }
 
-private async Task ShowCardProduct(Product product)
+    private async Task ShowCardProduct(Product product)
     {
         var result = await DialogService.OpenAsync("StoreApp", ds =>
     @<div>
@@ -125,13 +141,27 @@ new DialogOptions() { Width = "800px", Height = "700px" });
         {
             if (p.Id == 0)
             {
+                var response = await ClientHttp.PostAsJsonAsync("api/SaveProduct", p);
+                p.Id = await ClientHttp.GetFromJsonAsync<int>("api/GetLastProduct");
                 List<Product> lp = Products.ToList();
                 lp.Add(p);
                 Products = lp;
-                var response = await ClientHttp.PostAsJsonAsync("api/SaveProduct", p);
                 await GridProducts.InsertRow(p);
-                await GridProducts.Reload();
+                ShowNotification(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Success,
+                    Summary = "Success Summary",
+                    Detail = "Product created",
+                    Duration = 2000
+                });
             }
+
         }
     }
+
+    private void ShowNotification(NotificationMessage message)
+    {
+        NotificationService.Notify(message);
+    }
+
 }

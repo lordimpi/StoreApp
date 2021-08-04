@@ -1,4 +1,5 @@
 ﻿@using System.Text.Json
+@inject NotificationService NotificationService
 @using System.Text.Json.Serialization
 
 <RadzenTemplateForm TItem="Product" Data="@Product" Submit=@OnSave InvalidSubmit=@OnInvalidSubmit>
@@ -60,6 +61,18 @@
 
     void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
     {
+        ShowNotification(new NotificationMessage
+        {
+            Severity = NotificationSeverity.Error,
+            Summary = "Error summary",
+            Detail = "Fields empties",
+            Duration = 2000
+        });
         Console.WriteLine($"InvalidSubmit: {JsonSerializer.Serialize(args, new JsonSerializerOptions() { WriteIndented = true })}");
+    }
+
+    private void ShowNotification(NotificationMessage message)
+    {
+        NotificationService.Notify(message);
     }
 }

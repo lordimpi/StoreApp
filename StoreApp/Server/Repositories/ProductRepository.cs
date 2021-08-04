@@ -18,13 +18,75 @@ namespace StoreApp.Server.Repositories
             this.stringConnection = dataAccess.ConnectionStringSQL;
         }
 
-        public Task<bool> Delet(int id)
+        public async Task<bool> Delet(int id)
         {
-            throw new NotImplementedException();
+            SqlConnection sqlConnection = Connection();
+            SqlCommand sqlCommand = null;
+            SqlTransaction sqlTransaction = null;
+            bool result;
+
+            try
+            {
+                sqlConnection.Open();
+                sqlCommand = sqlConnection.CreateCommand();
+                sqlTransaction = sqlConnection.BeginTransaction();
+                sqlCommand.CommandText = "dbo.EliminarProducto";
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Transaction = sqlTransaction;
+
+                sqlCommand.Parameters.Clear();
+                sqlCommand.Parameters.Add("id", SqlDbType.Int).Value = id;
+                await sqlCommand.ExecuteNonQueryAsync();
+                sqlTransaction.Commit();
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                if (sqlTransaction != null)
+                {
+                    sqlTransaction.Rollback();
+                }
+                throw new Exception($"Se produjo un error al guardas los productos: {ex.Message}");
+            }
+            finally
+            {
+                sqlCommand.Dispose();
+                sqlConnection.Close();
+                sqlConnection.Dispose();
+            }
+            return result;
         }
         public Task<Product> Find(int id)
         {
             throw new NotImplementedException();
+        }
+        public async Task<Product> GetLastProduct()
+        {
+            Product product = new Product();
+            SqlConnection sqlConnection = Connection();
+            SqlCommand sqlCommand = null;
+            SqlDataReader sqlDataReader = null;
+
+            try
+            {
+                sqlConnection.Open();
+                sqlCommand = sqlConnection.CreateCommand();
+                sqlCommand.CommandText = "dbo.ObtenerUltimoProducto";
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlDataReader = await sqlCommand.ExecuteReaderAsync();
+
+                if (sqlDataReader.Read())
+                {
+                    product.Id = Convert.ToInt32(sqlDataReader["id_Product"]);
+                }
+            }
+            finally
+            {
+                sqlCommand.Dispose();
+                sqlConnection.Close();
+                sqlConnection.Dispose();
+            }
+            return product;
         }
         public async Task<Product> Save(Product product)
         {
