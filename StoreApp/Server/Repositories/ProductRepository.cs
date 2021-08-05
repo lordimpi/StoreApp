@@ -118,7 +118,7 @@ namespace StoreApp.Server.Repositories
                 {
                     sqlTransaction.Rollback();
                 }
-                throw new Exception($"Se produjo un error al guardas los productos: {ex.Message}");
+                throw new Exception($"Se produjo un error al guardar el producto: {ex.Message}");
             }
             finally
             {
@@ -128,9 +128,46 @@ namespace StoreApp.Server.Repositories
             }
             return product;
         }
-        public Task<Product> Update(Product product)
+        public async Task<Product> Update(Product product)
         {
-            throw new NotImplementedException();
+            SqlConnection sqlConnection = Connection();
+            SqlCommand sqlCommand = null;
+            SqlTransaction sqlTransaction = null;
+            try
+            {
+                sqlConnection.Open();
+                sqlCommand = sqlConnection.CreateCommand();
+                sqlTransaction = sqlConnection.BeginTransaction();
+                sqlCommand.CommandText = "dbo.EditarProducto";
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Transaction = sqlTransaction;
+
+                sqlCommand.Parameters.Clear();
+                sqlCommand.Parameters.Add("idp", SqlDbType.Int).Value = product.Id;
+                sqlCommand.Parameters.Add("nomb", SqlDbType.VarChar, 100).Value = product.Nombre;
+                sqlCommand.Parameters.Add("desc", SqlDbType.VarChar, 1000).Value = product.Descripcion;
+                sqlCommand.Parameters.Add("rutaImg", SqlDbType.VarChar, 500).Value = product.RutaImagen;
+                sqlCommand.Parameters.Add("fechaAlt", SqlDbType.DateTime).Value = product.FechaAlta;
+                sqlCommand.Parameters.Add("fechaBaj", SqlDbType.DateTime).Value = product.FechaBaja;
+                sqlCommand.Parameters.Add("precio", SqlDbType.Float).Value = product.Precio.PrecioVenta;
+                await sqlCommand.ExecuteNonQueryAsync();
+                sqlTransaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                if (sqlTransaction != null)
+                {
+                    sqlTransaction.Rollback();
+                }
+                throw new Exception($"Se produjo un error al editar el producto: {ex.Message}");
+            }
+            finally
+            {
+                sqlCommand.Dispose();
+                sqlConnection.Close();
+                sqlConnection.Dispose();
+            }
+            return product;
         }
         private SqlConnection Connection()
         {

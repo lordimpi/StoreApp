@@ -56,6 +56,22 @@ namespace StoreApp.Server.Controllers
             return Id;
         }
 
+        [Route("api/EditProduct")]
+        [HttpPut]
+        public async Task<ActionResult<Product>> EditProduct(Product product)
+        {
+            Product p;
+            try
+            {
+                p = await productRepository.Update(product);
+            }
+            catch (SqlException exc)
+            {
+                throw new Exception("No se pudo actualizar el producto: " + exc.Message.ToString());
+            }
+            return p;
+        }
+
         [Route("api/DeletProduct/{id:int}")]
         [HttpDelete]
         public async Task<ActionResult<bool>> DeletProduct(int id)

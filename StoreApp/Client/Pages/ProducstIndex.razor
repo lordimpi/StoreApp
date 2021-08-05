@@ -44,12 +44,10 @@
 {
     <CreateProduct Product="Product" OnClose="CloseModal" OnSave="(() => SaveRecord(Product))"></CreateProduct>
 }
-else
+
+@if (GridProducts != null)
 {
-    if (GridProducts != null)
-    {
-        GridProducts.Reload();
-    }
+    GridProducts.Reload();
 }
 
 @code
@@ -59,31 +57,31 @@ else
     bool LayerVisible;
     Product Product;
 
-    protected async override Task OnInitializedAsync()
+protected async override Task OnInitializedAsync()
     {
         Products = await ClientHttp.GetFromJsonAsync<List<Product>>("api/ListProducts");
         DialogService.OnOpen += Open;
         DialogService.OnClose += Close;
     }
 
-    public void Dispose()
+public void Dispose()
     {
         // The DialogService is a singleton so it is advisable to unsubscribe.
         DialogService.OnOpen -= Open;
         DialogService.OnClose -= Close;
     }
 
-    void Open(string title, Type type, Dictionary<string, object> parameters, DialogOptions options)
+void Open(string title, Type type, Dictionary<string, object> parameters, DialogOptions options)
     {
         Console.WriteLine("Dialog opened");
     }
 
-    void Close(dynamic result)
+void Close(dynamic result)
     {
         Console.WriteLine($"Dialog closed");
     }
 
-    private async Task DeleteProduct(Product product)
+private async Task DeleteProduct(Product product)
     {
         if (await DialogService.Confirm("Are you sure delete this record?", "" + product.Nombre, new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" }) == true)
         {
@@ -103,7 +101,7 @@ else
         }
     }
 
-    private async Task ShowCardProduct(Product product)
+private async Task ShowCardProduct(Product product)
     {
         var result = await DialogService.OpenAsync("StoreApp", ds =>
     @<div>
@@ -154,8 +152,17 @@ new DialogOptions() { Width = "800px", Height = "700px" });
                     Detail = "Product created",
                     Duration = 2000
                 });
+                return;
             }
-
+            var res = await ClientHttp.PutAsJsonAsync("api/EditProduct", p);
+            ShowNotification(new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Success Summary",
+                Detail = "Edited Product",
+                Duration = 2000
+            });
+            return;
         }
     }
 
